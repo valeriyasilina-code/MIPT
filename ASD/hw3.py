@@ -15,7 +15,7 @@ class Tree:
 
         self.root = self.NIL #пока в дереве ничего нет, корень NIL
 
-    def append(self, value):
+    def append(self, value):  #по идее за log(n), потому что каждый раз отсекаем половину
         new_node = Node(value, color='red') #создаем новый узел, по правилу он всегда красный
         new_node.left = self.NIL
         new_node.right = self.NIL
@@ -121,7 +121,7 @@ class Tree:
         self.root.color = 'black'
 
 
-    def print_tree(self, node=None, indent=0): #вывод дерева горизонтально, отступы показывают вложенность
+    def print_tree(self, node=None, indent=0): #вывод дерева горизонтально, отступы показывают вложенность, o(n) выводим все узлы
         if node is None:
             node = self.root
         if node is self.NIL:
@@ -130,7 +130,7 @@ class Tree:
         print("      " * indent + str(node.value) + node.color[0]) #пишем узел и цвет
         self.print_tree(node.left, indent + 1) #левое поддерево внизу
 
-    def find(self, value):
+    def find(self, value):    #по идее за log(n), потому что каждый раз отсекаем половину
         node = self.root #начинаем поиск с корня
         while node is not self.NIL: #пока не дошли до листьев
             if value == node.value:
